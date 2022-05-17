@@ -26,10 +26,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        enum: getEnum(EUserStatus),
-        default: EUserStatus.PENDING
+    isDeleted: {
+        type: Boolean,
+        default: false
     }
 });
 userSchema.plugin(timestamps);
@@ -37,8 +36,8 @@ userSchema.methods.generateAuthToken = function () {
     return jwt.sign({
         _id: this._id,
         email: this.email,
-        userType: this.userType,
-        status: this.status
+        names: this.names,
+        userType: this.userType
     }, SECRET_KEY);
 };
 
@@ -49,8 +48,7 @@ const User = mongoose.model('User', userSchema);
 const validate = (data) => {
     const schema = {
         names: Joi.string().required(),
-        username: Joi.string().required(),
-        nationalId: Joi.string().min(16).max(16).required(),
+        email: Joi.string().email().required(),
         password: Joi.string().min(5).required()
     }
 
@@ -62,8 +60,7 @@ const validate = (data) => {
 const validateUpdate = (data) => {
     const schema = {
         names: Joi.string().required(),
-        username: Joi.string().required(),
-        nationalId: Joi.string().min(16).max(16).required()
+        email: Joi.string().email().required(),
     }
 
     return Joi.validate(data, schema);
@@ -72,7 +69,7 @@ const validateUpdate = (data) => {
 
 const validateLogin = (data) => {
     const schema = {
-        username: Joi.string().required(),
+        email: Joi.string().email().required(),
         password: Joi.string().required()
     }
 

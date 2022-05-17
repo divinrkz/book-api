@@ -6,9 +6,9 @@ const EUserType = {
 
 const EUserStatus = {
     PENDING: 'PENDING',
-    ACTIVE: 'ACTIVE',
-    DELETED: 'DELETED'
+    ACTIVE: 'ACTIVE'
 };
+
 
 
 module.exports = {EUserType, EUserStatus};
