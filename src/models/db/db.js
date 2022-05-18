@@ -17,4 +17,4 @@ const connectDB = async () => {
     }
 };
 
-await connectDB();
+connectDB();
