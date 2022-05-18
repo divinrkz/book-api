@@ -4,11 +4,6 @@ const EUserType = {
     NORMAL: 'NORMAL',
 };
 
-const EUserStatus = {
-    PENDING: 'PENDING',
-    ACTIVE: 'ACTIVE'
-};
 
 
-
-module.exports = {EUserType, EUserStatus};
+module.exports = {EUserType};
