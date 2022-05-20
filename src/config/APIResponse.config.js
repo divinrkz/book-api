@@ -1,4 +1,4 @@
-export class APIResponse {
+ class APIResponse {
 
     static success (data=null, message="") {
         return {success: true, data, message, timestamp:new Date().getTime()};
@@ -8,3 +8,5 @@ export class APIResponse {
         return {success: false, error: err, message, timestamp:new Date().getTime()};
     }
 }
+
+exports.APIResponse = APIResponse
